@@ -1,5 +1,7 @@
 export async function api(path, { method = 'GET', headers = {}, body } = {}) {
-  const resp = await fetch(`/api${path}`, {
+  const base = import.meta?.env?.VITE_API_BASE_URL || ''
+  const url = `${base}/api${path}`
+  const resp = await fetch(url, {
     method,
     headers: {
       'Content-Type': 'application/json',
